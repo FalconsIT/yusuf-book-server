@@ -8,15 +8,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable } from '@nestjs/common';
-import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@prisma/client';
 let PrismaService = class PrismaService extends PrismaClient {
     constructor() {
-        const connectionString = process.env.DATABASE_URL;
-        if (!connectionString) {
-            throw new Error('DATABASE_URL must be set before starting the application.');
-        }
-        super({ adapter: new PrismaPg({ connectionString }) });
+        super({
+            datasources: {
+                db: {
+                    url: process.env.DATABASE_URL,
+                },
+            },
+        });
     }
     async onModuleInit() {
         await this.$connect();
