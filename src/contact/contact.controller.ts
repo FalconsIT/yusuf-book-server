@@ -1,5 +1,5 @@
 import { Controller, Post, Body, BadRequestException } from '@nestjs/common';
-import { ContactService } from './contact.service';
+import { ContactService } from './contact.service.js';
 
 export class ContactDTO {
   name: string;
@@ -24,7 +24,8 @@ export class ContactController {
         message: 'Email sent successfully',
       };
     } catch (error) {
-      throw new BadRequestException('Failed to send email: ' + error.message);
+      const message = error instanceof Error ? error.message : 'Unknown error';
+      throw new BadRequestException('Failed to send email: ' + message);
     }
   }
 }

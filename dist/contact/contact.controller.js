@@ -10,9 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var _a;
 import { Controller, Post, Body, BadRequestException } from '@nestjs/common';
-import { ContactService } from './contact.service';
+import { ContactService } from './contact.service.js';
 export class ContactDTO {
     name;
     email;
@@ -35,7 +34,8 @@ let ContactController = class ContactController {
             };
         }
         catch (error) {
-            throw new BadRequestException('Failed to send email: ' + error.message);
+            const message = error instanceof Error ? error.message : 'Unknown error';
+            throw new BadRequestException('Failed to send email: ' + message);
         }
     }
 };
@@ -48,7 +48,7 @@ __decorate([
 ], ContactController.prototype, "sendContact", null);
 ContactController = __decorate([
     Controller('contact'),
-    __metadata("design:paramtypes", [typeof (_a = typeof ContactService !== "undefined" && ContactService) === "function" ? _a : Object])
+    __metadata("design:paramtypes", [ContactService])
 ], ContactController);
 export { ContactController };
 //# sourceMappingURL=contact.controller.js.map

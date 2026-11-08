@@ -1,4 +1,4 @@
-import { ContactService } from './contact.service';
+import { ContactService } from './contact.service.js';
 export declare class ContactDTO {
     name: string;
     email: string;
