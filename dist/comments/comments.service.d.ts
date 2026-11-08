@@ -6,17 +6,17 @@ export declare class CommentsService {
         replies: {
             id: string;
             createdAt: Date;
+            bookId: string;
             text: string;
             userName: string;
-            bookId: string;
             parentId: string | null;
         }[];
     } & {
         id: string;
         createdAt: Date;
+        bookId: string;
         text: string;
         userName: string;
-        bookId: string;
         parentId: string | null;
     })[]>;
     create(input: {
@@ -28,17 +28,17 @@ export declare class CommentsService {
         replies: {
             id: string;
             createdAt: Date;
+            bookId: string;
             text: string;
             userName: string;
-            bookId: string;
             parentId: string | null;
         }[];
     } & {
         id: string;
         createdAt: Date;
+        bookId: string;
         text: string;
         userName: string;
-        bookId: string;
         parentId: string | null;
     }>;
 }
